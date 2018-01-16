@@ -155,10 +155,11 @@ public class Principal {
 		
 		//ArrayList<Integer> numeros = practicas.convierteCadenasANumeros(cadenas1);
 		
-		ArrayList<ArrayList<Integer>> arrayTrans = practicas.transArrayIntoArrayList(visitantesYear);
+		//ArrayList<ArrayList<Integer>> arrayTrans = practicas.transArrayIntoArrayList(visitantesYear);
 		
-		HashMap<String, Estudiante> estudiantesMapa = practicas.introMapas();
+		//HashMap<String, Estudiante> estudiantesMapa = practicas.introMapas();
 		HashMap<String,Estudiante> estudiantesLista = practicas.leerFichero();
+		System.out.println(estudiantesLista.get("MARÍA NAVARRO GÓMEZ").toString());
 		
 		System.out.println("fin");
 

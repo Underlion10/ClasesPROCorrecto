@@ -38,10 +38,6 @@ public class Practicas {
 	}
 	
 	public HashMap<String,Estudiante> leerFichero() {
-		String nif = "";
-		String nombre = "";
-		String fechaNacimiento = ""; 
-		String sexo = "";
 		ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
 		HashMap<String, Estudiante> mapaEstudiantes = new HashMap<String, Estudiante>();
 		try {
@@ -49,23 +45,21 @@ public class Practicas {
 			while(in.ready()) {
 				String linea = in.readLine();
 				String[] partes = linea.split("-");
-				nif = partes[0];
-				nombre = partes[1];
-				fechaNacimiento = partes[2];
+				int codGrupo = Integer.parseInt(partes[0]);
+				String nif = partes[1];
+				String nombre = partes[2];
+				String fechaNacimiento = partes[3];
 				calcularEdad(fechaNacimiento);
-				sexo = partes[3];
-				Estudiante est1 = new Estudiante(0, nif, nombre, sexo.charAt(0), LocalDate.of(Integer.parseInt(fechaNacimiento.substring(4,8)), 
+				String sexo = partes[4];
+				Estudiante est1 = new Estudiante(codGrupo, nif, nombre, sexo.charAt(0), LocalDate.of(Integer.parseInt(fechaNacimiento.substring(4,8)), 
 						Integer.parseInt(fechaNacimiento.substring(2,4)), Integer.parseInt(fechaNacimiento.substring(0,2))), 180, null, null);
 				estudiantes.add(est1);
 				mapaEstudiantes.put(est1.getNombre(), est1);
 			}
-			in.close();
-				
+			in.close();		
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
 		return mapaEstudiantes;
 	}
 	
@@ -402,7 +396,7 @@ public class Practicas {
 		listaE.set(0, est1);
 
 		for (Estudiante estudiante : listaE) { // Prueba con el for-each
-			// System.out.println(estudiante.getCodGrupo());
+			System.out.println(estudiante.getCodGrupo());
 		}
 
 		for (int i = 0; i < listaE.size(); i++) {
@@ -416,10 +410,6 @@ public class Practicas {
 	}
 
 	// FIN 2DA EVALUACIÓN//
-
-	private void esPrimeraEv() {
-
-	}
 
 	// 1ERA EVALUACION//
 
@@ -736,7 +726,6 @@ public class Practicas {
 				contadorMayusculas++;
 			int caracterAscii = cadena.charAt(i);
 			if ((caracterAscii >= 0 && caracterAscii <= 47) || (caracterAscii >= 58 && caracterAscii <= 64) ||
-
 					(caracterAscii >= 91) && (caracterAscii <= 96))
 
 				contadorEspeciales++;
