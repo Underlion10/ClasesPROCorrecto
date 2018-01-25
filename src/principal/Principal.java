@@ -159,7 +159,73 @@ public class Principal {
 		
 		//HashMap<String, Estudiante> estudiantesMapa = practicas.introMapas();
 		HashMap<String,Estudiante> estudiantesLista = practicas.leerFichero();
-		System.out.println(estudiantesLista.get("MARÍA NAVARRO GÓMEZ").toString());
+//		System.out.println(estudiantesLista.get("MARÍA NAVARRO GÓMEZ").toString());
+		practicas.calcularEdad("10052000");
+		// Prueba ordenar ArrayList
+		ArrayList<Integer> edades = new ArrayList<Integer>();
+		edades.add(34);
+		edades.add(20);
+		edades.add(19);
+		edades.add(53);
+		edades.add(12);
+		practicas.ordenarArrayList(edades);
+		//FIN prueba ordenar ArrayList
+		
+		//Prueba ordenar HashMap
+		HashMap<Integer, Integer> edadPeso = new HashMap<Integer, Integer>();
+		edadPeso.put(23, 65);
+		edadPeso.put(15, 50);
+		edadPeso.put(45, 75);
+		edadPeso.put(10, 30);
+		edadPeso.put(19, 69);
+		practicas.ordenarHashMapKey(edadPeso);
+		ArrayList<Float> movs = new ArrayList<Float>();
+		movs.add(20f);
+		movs.add(30f);
+		float saldo = practicas.calculaSaldo(45, movs);
+		//FIN prueba ordenar HashMap
+		
+		//OrdenarHashMapPorValue
+		HashMap<Integer, Integer> mapa = practicas.ordenarHashMapValue();
+		
+		//FIN OrdenarHashMapPorValue
+		
+		//Prueba Matrices con ArrayList
+		ArrayList<ArrayList<Integer>> edadesMatriz = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> edades1 = new ArrayList<Integer>();
+		edades1.add(34);
+		edades1.add(20);
+		edades1.add(19);
+		edades1.add(53);
+		edades1.add(12);
+		ArrayList<Integer> edades2 = new ArrayList<Integer>();
+		edades2.add(34);
+		edades2.add(20);
+		edades2.add(19);
+		edades2.add(53);
+		edades2.add(12);
+		ArrayList<Integer> edades3 = new ArrayList<Integer>();
+		edades3.add(35);
+		edades3.add(26);
+		edades3.add(17);
+		edades3.add(59);
+		edades3.add(15);
+		edadesMatriz.add(edades1);
+		edadesMatriz.add(edades2);
+		edadesMatriz.add(edades3);
+		
+		practicas.recorrerMatrizIrregularPorColumnas2(edadesMatriz);
+		
+		//Fin Prueba Matrices con ArrayList
+		//Prueba ordenar ArrayList
+		ArrayList<String> cadenasDes = new ArrayList<String>();
+		cadenasDes.add("gorra");
+		cadenasDes.add("tuberculo");
+		cadenasDes.add("arbelo");
+		cadenasDes.add("junco");
+		practicas.ordenaCadenas(cadenasDes);
+		//Fin prueba ordenar ArrayList
+		
 		
 		System.out.println("fin");
 

@@ -7,10 +7,18 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import modelo.Datos;
 import modelo.Equipo;
@@ -27,6 +35,30 @@ public class Practicas {
 	
 	//620430873
 	
+	//Calcular Ed
+	//Ordenacion HashMap y ArrayList
+	
+	public HashMap<Integer, Integer> ordenarHashMapValue() {
+		HashMap<Integer, Integer> mapa = new HashMap<Integer, Integer>();
+		mapa.put(30, 10);
+		mapa.put(2, 8);
+		mapa.put(1, 16);
+		ArrayList<Integer> misMapValues = new ArrayList<Integer>(mapa.values());
+		Collections.sort(misMapValues);
+		Set<Integer> claves = mapa.keySet();
+		return mapa;
+	}
+	
+	public void ordenarHashMapKey(HashMap<Integer, Integer> mapa) {
+		TreeMap<Integer, Integer> mapaOrdenado = new TreeMap<Integer, Integer>(mapa);
+		SortedMap<Integer, Integer> mapaSorted = new TreeMap<Integer, Integer>(mapa);
+		System.out.println(mapaSorted);
+	}
+	
+	public void ordenarArrayList(ArrayList<Integer> lista) {
+		Collections.sort(lista);
+	}
+	
 	public int calcularEdad(String fechaNacimiento) {
 		DateTimeFormatter fat = DateTimeFormatter.ofPattern("ddMMyyyy");
 		LocalDate fechaNac = LocalDate.parse(fechaNacimiento, fat);
@@ -37,9 +69,10 @@ public class Practicas {
 		return period.getYears();
 	}
 	
-	public HashMap<String,Estudiante> leerFichero() {
+	public HashMap<String, Estudiante> leerFichero() {
 		ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
 		HashMap<String, Estudiante> mapaEstudiantes = new HashMap<String, Estudiante>();
+		int year = 0;
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("src/ficheros/persona.txt"));
 			while(in.ready()) {
@@ -49,7 +82,7 @@ public class Practicas {
 				String nif = partes[1];
 				String nombre = partes[2];
 				String fechaNacimiento = partes[3];
-				calcularEdad(fechaNacimiento);
+				year += calcularEdad(fechaNacimiento);
 				String sexo = partes[4];
 				Estudiante est1 = new Estudiante(codGrupo, nif, nombre, sexo.charAt(0), LocalDate.of(Integer.parseInt(fechaNacimiento.substring(4,8)), 
 						Integer.parseInt(fechaNacimiento.substring(2,4)), Integer.parseInt(fechaNacimiento.substring(0,2))), 180, null, null);
@@ -60,6 +93,9 @@ public class Practicas {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+		
+		year = (int) year/estudiantes.size();
+		System.out.println(year);
 		return mapaEstudiantes;
 	}
 	
@@ -177,15 +213,14 @@ public class Practicas {
 					cadenas.set(i, cadenas.get(j));
 					cadenas.set(j, aux);
 				}
-
 	}
 
 	public void recorrerMatrizIrregularPorColumnas2(ArrayList<ArrayList<Integer>> matriz) {
 		int JMAX = 0;
 		// obtenemos el numero maximo de columnas
 		for (int i = 0; i < matriz.size(); i++) {
-			if (matriz.size() > JMAX)
-				JMAX = matriz.size();
+			if (matriz.get(i).size() > JMAX)
+				JMAX = matriz.get(i).size();
 		}
 
 		for (int j = 0; j < JMAX; j++) {
@@ -206,8 +241,8 @@ public class Practicas {
 		int JMAX = 0;
 		// obtenemos el numero maximo de columnas
 		for (int i = 0; i < matriz.size(); i++) {
-			if (matriz.size() > JMAX)
-				JMAX = matriz.size();
+			if (matriz.get(i).size() > JMAX)
+				JMAX = matriz.get(i).size();
 		}
 
 		for (int j = 0; j < JMAX; j++) {
