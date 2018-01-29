@@ -60,10 +60,10 @@ public class Practicas {
 		try {
 			FileInputStream fr = new FileInputStream("C:\\\\Users\\\\lione\\\\Desktop\\\\EjerciciosClase2DA-Evaluacion\\\\src\\\\objetos.txt");
 			ObjectInputStream os = new ObjectInputStream(fr);
-			estDev.add((Estudiante) os.readObject());
-			estDev.add((Estudiante) os.readObject());
-			estDev.add((Estudiante) os.readObject());
-			estDev.add((Estudiante) os.readObject());
+			Estudiante est = null;
+			while((est =(Estudiante) os.readObject()) != null) {
+			estDev.add(est);
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
