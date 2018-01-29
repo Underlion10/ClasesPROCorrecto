@@ -38,6 +38,18 @@ public class Practicas {
 	//Calcular Ed
 	//Ordenacion HashMap y ArrayList
 	
+	public void ordenarPersonas(ArrayList<Persona> personas) {
+		for(int i = 0; i<personas.size()-1;i++) {
+			for(int j = i+1; j<personas.size(); j++) {
+				if(personas.get(i).compareTo(personas.get(j)) > 0) {
+					Persona aux = personas.get(j);
+					personas.set(j, personas.get(i));
+					personas.set(i, aux);
+				}
+			}
+		}
+	}
+	
 	public HashMap<Integer, Integer> ordenarHashMapValue() {
 		HashMap<Integer, Integer> mapa = new HashMap<Integer, Integer>();
 		mapa.put(30, 10);

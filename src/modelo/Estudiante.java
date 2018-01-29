@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class Estudiante extends Persona implements Comparable<Estudiante> {
+public class Estudiante extends Persona {
 	private int codGrupo;
 
 	public Estudiante(int codGrupo) {

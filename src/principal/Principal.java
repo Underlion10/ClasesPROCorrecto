@@ -226,6 +226,19 @@ public class Principal {
 		practicas.ordenaCadenas(cadenasDes);
 		//Fin prueba ordenar ArrayList
 		
+		//Prueba ordenar ArrayList de personas por nombre
+		ArrayList<Persona> personas = new ArrayList<Persona>();
+		Persona pers1 = new Persona("23n", "Juan",'N', LocalDate.now(), 0, null, null);
+		Persona pers2 = new Persona("23n", "Marc",'N', LocalDate.now(), 0, null, null);
+		Persona pers3 = new Persona("23n", "Alm",'N', LocalDate.now(), 0, null, null);
+		Persona pers4 = new Persona("23n", "Crist",'N', LocalDate.now(), 0, null, null);
+		personas.add(pers1);
+		personas.add(pers2);
+		personas.add(pers3);
+		personas.add(pers4);
+		practicas.ordenarPersonas(personas);
+		//Fin Prueba ordenar ArrayList de personas por nombre
+		
 		
 		System.out.println("fin");
 

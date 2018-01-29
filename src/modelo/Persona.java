@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-public abstract class Persona {
+public class Persona implements Comparable<Persona>{
 
 	private String nif;
 	private String nombre;
@@ -108,6 +108,14 @@ public abstract class Persona {
 
 	public void setMadre(Persona madre) {
 		this.madre = madre;
+	}
+	
+	public int compareTo(Persona persona) {
+		if(this.nombre.compareTo(persona.nombre) != 0) {
+			return this.nombre.compareTo(persona.nombre);
+		} else {
+			return this.fecha.compareTo(persona.fecha);
+		}
 	}
 
 	
