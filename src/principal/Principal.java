@@ -245,7 +245,7 @@ public class Principal {
 		ests.add(new Estudiante(45));
 		ests.add(new Estudiante(60));
 		ests.add(new Estudiante(80));
-		boolean correcto = practicas.escribirObjetoFichero(ests);
+		ArrayList<Estudiante> estus= practicas.escribirObjetoFichero(ests);
 		System.out.println("fin");
 
 	}

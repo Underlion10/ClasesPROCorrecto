@@ -2,6 +2,7 @@ package auxiliar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -38,7 +39,7 @@ public class Practicas {
 	//Ejercicio generarFichero
 	
 	
-	public boolean escribirObjetoFichero(ArrayList<Estudiante> es) {
+	public ArrayList<Estudiante> escribirObjetoFichero(ArrayList<Estudiante> es) {
 		boolean correcto = true;
 		try {
 			FileOutputStream br = new FileOutputStream("C:\\\\Users\\\\lione\\\\Desktop\\\\EjerciciosClase2DA-Evaluacion\\\\src\\\\objetos.txt");
@@ -54,7 +55,24 @@ public class Practicas {
 			correcto = false;
 		}
 		
-		return correcto;
+		ArrayList<Estudiante> estDev = new ArrayList<Estudiante>();
+		
+		try {
+			FileInputStream fr = new FileInputStream("C:\\\\Users\\\\lione\\\\Desktop\\\\EjerciciosClase2DA-Evaluacion\\\\src\\\\objetos.txt");
+			ObjectInputStream os = new ObjectInputStream(fr);
+			estDev.add((Estudiante) os.readObject());
+			estDev.add((Estudiante) os.readObject());
+			estDev.add((Estudiante) os.readObject());
+			estDev.add((Estudiante) os.readObject());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return estDev;
 	}
 	
 	public boolean generarArchivoLanzamiento(int cuantos, String ruta) {
