@@ -2,26 +2,24 @@ package auxiliar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.TreeSet;
-
 import modelo.Datos;
 import modelo.Equipo;
 import modelo.Estudiante;
@@ -39,11 +37,32 @@ public class Practicas {
 	
 	//Ejercicio generarFichero
 	
-	public boolean generarArchivoLanzamiento(int cuantos) {
+	
+	public boolean escribirObjetoFichero(ArrayList<Estudiante> es) {
+		boolean correcto = true;
+		try {
+			FileOutputStream br = new FileOutputStream("C:\\\\Users\\\\lione\\\\Desktop\\\\EjerciciosClase2DA-Evaluacion\\\\src\\\\objetos.txt");
+			ObjectOutputStream os = new ObjectOutputStream(br);
+			for(Estudiante est: es) {
+				os.writeObject(est);
+			}
+			os.close();
+			br.close();
+		} catch (FileNotFoundException e) {
+			correcto = false;
+		} catch (IOException e) {
+			correcto = false;
+		}
+		
+		return correcto;
+	}
+	
+	public boolean generarArchivoLanzamiento(int cuantos, String ruta) {
+		long time = System.nanoTime();
 		boolean correcto = true;
 		Random rnd = new Random();
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter("C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\LanzamientoRes.txt"));
+			BufferedWriter br = new BufferedWriter(new FileWriter(ruta));
 			HashMap<Integer,Integer> lanzamientoResultado = new HashMap<Integer, Integer>();
 			int contador1 = 0;
 			int contador2 = 0;
@@ -75,6 +94,15 @@ public class Practicas {
 					contador6++;
 					break;
 				}
+				
+				try {
+					Thread.sleep(rnd.nextInt(500) + 500);
+					time += System.nanoTime();
+					float acttime = (time/100000000);
+					br.write(acttime/10000000 + " segundos de ejecución. ");
+				} catch (InterruptedException e) {
+					return false;
+				}
 				br.write(lanzamiento + "#" + resultado + "\n");
 			}
 			br.write("----Resultados----\n");
@@ -84,7 +112,8 @@ public class Practicas {
 			br.write("El numero 3 ha aparecido " + contador3 + " veces.\n");
 			br.write("El numero 4 ha aparecido " + contador4 + " veces.\n");
 			br.write("El numero 5 ha aparecido " + contador5 + " veces.\n");
-			br.write("El numero 6 ha aparecido " + contador6 + " veces.");
+			br.write("El numero 6 ha aparecido " + contador6 + " veces.\n");
+			br.write(System.currentTimeMillis() + "");
 			br.close();
 		} catch (IOException e) {
 			correcto = false;

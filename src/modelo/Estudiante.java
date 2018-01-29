@@ -1,8 +1,13 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Estudiante extends Persona {
+public class Estudiante extends Persona implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3433562497237362411L;
 	private int codGrupo;
 
 	public Estudiante(int codGrupo) {

@@ -239,9 +239,13 @@ public class Principal {
 		practicas.ordenarPersonas(personas);
 		//Fin Prueba ordenar ArrayList de personas por nombre
 		
-		boolean correcto = practicas.generarArchivoLanzamiento(20);
-		
-		
+		//boolean correcto = practicas.generarArchivoLanzamiento(20, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\LanzamientoRes.txt");
+		ArrayList<Estudiante> ests = new ArrayList<Estudiante>();
+		ests.add(new Estudiante(123));
+		ests.add(new Estudiante(45));
+		ests.add(new Estudiante(60));
+		ests.add(new Estudiante(80));
+		boolean correcto = practicas.escribirObjetoFichero(ests);
 		System.out.println("fin");
 
 	}
