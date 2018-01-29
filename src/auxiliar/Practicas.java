@@ -1,7 +1,9 @@
 package auxiliar;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -34,6 +36,63 @@ public class Practicas {
 	// MAPA
 	
 	//620430873
+	
+	//Ejercicio generarFichero
+	
+	public boolean generarArchivoLanzamiento(int cuantos) {
+		boolean correcto = true;
+		Random rnd = new Random();
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter("C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\LanzamientoRes.txt"));
+			HashMap<Integer,Integer> lanzamientoResultado = new HashMap<Integer, Integer>();
+			int contador1 = 0;
+			int contador2 = 0;
+			int contador3 = 0;
+			int contador4 = 0;
+			int contador5 = 0;
+			int contador6 = 0;
+			for(int i = 0; i < cuantos; i++) {
+				int lanzamiento = i+1;
+				int resultado = rnd.nextInt(6) + 1;
+				lanzamientoResultado.put(lanzamiento, resultado);
+				switch(resultado) {
+				case 1:
+					contador1++;
+					break;
+				case 2:
+					contador2++;
+					break;
+				case 3:
+					contador3++;
+					break;
+				case 4:
+					contador4++;
+					break;
+				case 5:
+					contador5++;
+					break;
+				case 6:
+					contador6++;
+					break;
+				}
+				br.write(lanzamiento + "#" + resultado + "\n");
+			}
+			br.write("----Resultados----\n");
+			br.write("El dado ha sido lanzado " + cuantos + " veces.\n");
+			br.write("El numero 1 ha aparecido " + contador1 + " veces.\n");
+			br.write("El numero 2 ha aparecido " + contador2 + " veces.\n");
+			br.write("El numero 3 ha aparecido " + contador3 + " veces.\n");
+			br.write("El numero 4 ha aparecido " + contador4 + " veces.\n");
+			br.write("El numero 5 ha aparecido " + contador5 + " veces.\n");
+			br.write("El numero 6 ha aparecido " + contador6 + " veces.");
+			br.close();
+		} catch (IOException e) {
+			correcto = false;
+		}
+		return correcto;
+	}
+	
+	//Fin ejercicioGenerarFichero
 	
 	//Calcular Ed
 	//Ordenacion HashMap y ArrayList

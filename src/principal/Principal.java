@@ -239,6 +239,8 @@ public class Principal {
 		practicas.ordenarPersonas(personas);
 		//Fin Prueba ordenar ArrayList de personas por nombre
 		
+		boolean correcto = practicas.generarArchivoLanzamiento(20);
+		
 		
 		System.out.println("fin");
 
