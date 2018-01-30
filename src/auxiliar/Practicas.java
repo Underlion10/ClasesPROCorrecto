@@ -40,6 +40,7 @@ public class Practicas {
 	
 	
 	public ArrayList<Estudiante> escribirObjetoFichero(ArrayList<Estudiante> es, String ruta) {
+		
 		boolean correcto = true;
 		
 		//abrimos y creamos el fichero de objetos
@@ -66,6 +67,7 @@ public class Practicas {
 			while(fr.available() > 0) {
 				Estudiante est = (Estudiante) os.readObject();
 				estDev.add(est);
+				System.out.println(est.getNombre());
 			}
 			fr.close();
 			os.close();

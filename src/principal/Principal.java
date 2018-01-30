@@ -241,10 +241,10 @@ public class Principal {
 		
 		//boolean correcto = practicas.generarArchivoLanzamiento(20, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\LanzamientoRes.txt");
 		ArrayList<Estudiante> ests = new ArrayList<Estudiante>();
-		ests.add(new Estudiante(123));
-		ests.add(new Estudiante(45));
-		ests.add(new Estudiante(60));
-		ests.add(new Estudiante(80));
+		ests.add(new Estudiante(21343, "ghgh", "abadia", 'F', LocalDate.now(), 56, null, null));
+		ests.add(new Estudiante(21343, "ghgh", "abaco", 'F', LocalDate.now(), 56, null, null));
+		ests.add(new Estudiante(21343, "ghgh", "abano", 'F', LocalDate.now(), 56, null, null));
+		ests.add(new Estudiante(21343, "ghgh", "asaid", 'F', LocalDate.now(), 56, null, null));
 		ArrayList<Estudiante> estus= practicas.escribirObjetoFichero(ests, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\ficheros\\objetos.obj");
 		System.out.println("fin");
 

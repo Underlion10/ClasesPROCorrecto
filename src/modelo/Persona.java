@@ -1,9 +1,16 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Persona implements Comparable<Persona>{
+	//para que lea el fichero correctamente tanto Estudiante, (el hijo), como el padre Persona*/
 
+public class Persona implements Comparable<Persona>, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3349017056050519095L;
 	private String nif;
 	private String nombre;
 	private char sexo; // 'M' 'F'
@@ -18,6 +25,18 @@ public class Persona implements Comparable<Persona>{
 	// tipos posibles
 	// primitivos: int, boolean, float, double..
 	// clases: Date, Random,....
+	
+	public Persona(String nif,String nombre, char sexo, LocalDate fecha, int altura, Persona padre, Persona madre) {
+
+		this.nif = nif;
+		this.nombre = nombre;
+		this.sexo = sexo;
+		this.fecha = fecha;
+		this.altura = altura;
+		this.padre = padre;
+		this.madre = madre;
+		contador++;
+	}
 
 	public Persona() { // constructor sin parámetros
 		
@@ -31,17 +50,7 @@ public class Persona implements Comparable<Persona>{
 		contador++;
 	}
 
-	public  Persona(String nif,String nombre, char sexo, LocalDate fecha, int altura, Persona padre, Persona madre) {
-
-		this.nif = nif;
-		this.nombre = nombre;
-		this.sexo = sexo;
-		this.fecha = fecha;
-		this.altura = altura;
-		this.padre = padre;
-		this.madre = madre;
-		contador++;
-	}
+	
 @Override	
 
 	public String toString() {
