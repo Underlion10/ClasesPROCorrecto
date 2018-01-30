@@ -36,11 +36,13 @@ public class Practicas {
 	
 	//620430873
 	
-	//Ejercicio generarFichero
+	//Ejercicio generarFichero de Estudiantes
 	
 	
 	public ArrayList<Estudiante> escribirObjetoFichero(ArrayList<Estudiante> es, String ruta) {
 		boolean correcto = true;
+		
+		//abrimos y creamos el fichero de objetos
 		try {
 			FileOutputStream br = new FileOutputStream(ruta);
 			ObjectOutputStream os = new ObjectOutputStream(br);
@@ -57,6 +59,7 @@ public class Practicas {
 		
 		ArrayList<Estudiante> estDev = new ArrayList<Estudiante>();
 		
+		// leemos el fichero de objetos que hemos creado anteriormente.
 		try {
 			FileInputStream fr = new FileInputStream(ruta);
 			ObjectInputStream os = new ObjectInputStream(fr);
@@ -64,6 +67,8 @@ public class Practicas {
 				Estudiante est = (Estudiante) os.readObject();
 				estDev.add(est);
 			}
+			fr.close();
+			os.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -73,6 +78,8 @@ public class Practicas {
 		}
 		return estDev;
 	}
+	
+	//Fin ejercicio ficheros de Estudiantes
 	
 	public boolean generarArchivoLanzamiento(int cuantos, String ruta) {
 		long time = System.nanoTime();

@@ -245,7 +245,7 @@ public class Principal {
 		ests.add(new Estudiante(45));
 		ests.add(new Estudiante(60));
 		ests.add(new Estudiante(80));
-		ArrayList<Estudiante> estus= practicas.escribirObjetoFichero(ests, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\objetos.txt");
+		ArrayList<Estudiante> estus= practicas.escribirObjetoFichero(ests, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\ficheros\\objetos.obj");
 		System.out.println("fin");
 
 	}
