@@ -39,10 +39,10 @@ public class Practicas {
 	//Ejercicio generarFichero
 	
 	
-	public ArrayList<Estudiante> escribirObjetoFichero(ArrayList<Estudiante> es) {
+	public ArrayList<Estudiante> escribirObjetoFichero(ArrayList<Estudiante> es, String ruta) {
 		boolean correcto = true;
 		try {
-			FileOutputStream br = new FileOutputStream("C:\\\\Users\\\\lione\\\\Desktop\\\\EjerciciosClase2DA-Evaluacion\\\\src\\\\objetos.txt");
+			FileOutputStream br = new FileOutputStream(ruta);
 			ObjectOutputStream os = new ObjectOutputStream(br);
 			for(Estudiante est: es) {
 				os.writeObject(est);
@@ -58,11 +58,11 @@ public class Practicas {
 		ArrayList<Estudiante> estDev = new ArrayList<Estudiante>();
 		
 		try {
-			FileInputStream fr = new FileInputStream("C:\\\\Users\\\\lione\\\\Desktop\\\\EjerciciosClase2DA-Evaluacion\\\\src\\\\objetos.txt");
+			FileInputStream fr = new FileInputStream(ruta);
 			ObjectInputStream os = new ObjectInputStream(fr);
-			Estudiante est = null;
-			while((est =(Estudiante) os.readObject()) != null) {
-			estDev.add(est);
+			while(fr.available() > 0) {
+				Estudiante est = (Estudiante) os.readObject();
+				estDev.add(est);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -71,7 +71,6 @@ public class Practicas {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		return estDev;
 	}
 	
