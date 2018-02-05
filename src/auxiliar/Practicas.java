@@ -37,7 +37,7 @@ public class Practicas {
 	
 	//620430873
 	
-	//Ejercicio repaso programacion
+	//Ejercicio repaso ficherosObjetos
 	
 	public ArrayList<Vehiculo> leerArchivoObjetos(String ruta){
 		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
@@ -97,6 +97,8 @@ public class Practicas {
 		
 		return listaVehiculo;
 	}
+	
+	//Fin ejercicioFicheroObjetos
 	
 	
 	//Ejercicio generarFichero de Estudiantes
