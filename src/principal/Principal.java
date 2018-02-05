@@ -2,9 +2,7 @@ package principal;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Set;
 
 import auxiliar.Practicas;
 import examen1EV.Metodos;
@@ -13,7 +11,6 @@ import modelo.Equipo;
 import modelo.Estudiante;
 import modelo.Libro;
 import modelo.Persona;
-import modelo.Profesor;
 
 public class Principal {
 	// metodo por el que debe empezar la ejecución ..

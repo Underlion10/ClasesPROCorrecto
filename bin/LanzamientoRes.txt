@@ -1,0 +1,29 @@
+2.406606 segundos de ejecución. 1#5
+3.60991 segundos de ejecución. 2#4
+4.813215 segundos de ejecución. 3#5
+6.0165195 segundos de ejecución. 4#2
+7.2198257 segundos de ejecución. 5#2
+8.423132 segundos de ejecución. 6#5
+9.626439 segundos de ejecución. 7#2
+10.829747 segundos de ejecución. 8#2
+12.033056 segundos de ejecución. 9#5
+13.236365 segundos de ejecución. 10#1
+14.439675 segundos de ejecución. 11#3
+15.642987 segundos de ejecución. 12#4
+16.8463 segundos de ejecución. 13#2
+18.049612 segundos de ejecución. 14#3
+19.252924 segundos de ejecución. 15#1
+20.456238 segundos de ejecución. 16#6
+21.659554 segundos de ejecución. 17#3
+22.86287 segundos de ejecución. 18#2
+24.066185 segundos de ejecución. 19#2
+25.269503 segundos de ejecución. 20#2
+----Resultados----
+El dado ha sido lanzado 20 veces.
+El numero 1 ha aparecido 2 veces.
+El numero 2 ha aparecido 8 veces.
+El numero 3 ha aparecido 3 veces.
+El numero 4 ha aparecido 2 veces.
+El numero 5 ha aparecido 4 veces.
+El numero 6 ha aparecido 1 veces.
+1517232535540

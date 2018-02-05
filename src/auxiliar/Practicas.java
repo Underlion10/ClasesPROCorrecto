@@ -50,6 +50,9 @@ public class Practicas {
 			for(Estudiante est: es) {
 				os.writeObject(est);
 			}
+			
+			/*tambien se podría haber leído la lista mediante un os.writeObject(es),
+			metiendo toda la lista de una sola vez*/
 			os.close();
 			br.close();
 		} catch (FileNotFoundException e) {
