@@ -11,6 +11,7 @@ import modelo.Equipo;
 import modelo.Estudiante;
 import modelo.Libro;
 import modelo.Persona;
+import modelo.Vehiculo;
 
 public class Principal {
 	// metodo por el que debe empezar la ejecución ..
@@ -237,14 +238,16 @@ public class Principal {
 		//Fin Prueba ordenar ArrayList de personas por nombre
 		
 		//boolean correcto = practicas.generarArchivoLanzamiento(20, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\LanzamientoRes.txt");
-		ArrayList<Estudiante> ests = new ArrayList<Estudiante>();
-		ests.add(new Estudiante(21343, "ghgh", "abadia", 'F', LocalDate.now(), 56, null, null));
-		ests.add(new Estudiante(21343, "ghgh", "abaco", 'F', LocalDate.now(), 56, null, null));
-		ests.add(new Estudiante(21343, "ghgh", "abano", 'F', LocalDate.now(), 56, null, null));
-		ests.add(new Estudiante(21343, "ghgh", "asaid", 'F', LocalDate.now(), 56, null, null));
-		ArrayList<Estudiante> estus= practicas.escribirObjetoFichero(ests, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\ficheros\\objetos.obj");
+//		ArrayList<Estudiante> ests = new ArrayList<Estudiante>();
+//		ests.add(new Estudiante(21343, "ghgh", "abadia", 'F', LocalDate.now(), 56, null, null));
+//		ests.add(new Estudiante(21343, "ghgh", "abaco", 'F', LocalDate.now(), 56, null, null));
+//		ests.add(new Estudiante(21343, "ghgh", "abano", 'F', LocalDate.now(), 56, null, null));
+//		ests.add(new Estudiante(21343, "ghgh", "asaid", 'F', LocalDate.now(), 56, null, null));
+//		ArrayList<Estudiante> estus= practicas.escribirObjetoFichero(ests, "C:\\Users\\lione\\Desktop\\EjerciciosClase2DA-Evaluacion\\src\\ficheros\\objetos.obj");
+		ArrayList<Vehiculo> vehiculos = practicas.leerFicheroVehiculo("src/ficheros/vehiculos.txt");
+		practicas.crearArchivoObjetos(vehiculos, "src/ficheros/Objetosvehiculos.obj");
+		ArrayList<Vehiculo> listaLectura = practicas.leerArchivoObjetos("src/ficheros/Objetosvehiculos.obj");
 		System.out.println("fin");
-
 	}
 
 }

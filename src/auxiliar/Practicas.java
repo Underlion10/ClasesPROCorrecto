@@ -25,6 +25,7 @@ import modelo.Datos;
 import modelo.Equipo;
 import modelo.Estudiante;
 import modelo.Persona;
+import modelo.Vehiculo;
 
 public class Practicas {
 	// private static String[] diasSemana = { "lunes", "martes", "miercoles",
@@ -35,6 +36,68 @@ public class Practicas {
 	// MAPA
 	
 	//620430873
+	
+	//Ejercicio repaso programacion
+	
+	public ArrayList<Vehiculo> leerArchivoObjetos(String ruta){
+		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+		try {
+			FileInputStream fr = new FileInputStream(ruta);
+			ObjectInputStream or = new ObjectInputStream(fr);
+			while(fr.available() > 0) {
+				listaVehiculos.add((Vehiculo) or.readObject());
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return listaVehiculos;
+		
+	}
+	
+	public void crearArchivoObjetos(ArrayList<Vehiculo> vehiculos, String ruta) {
+		try {
+			FileOutputStream fr = new FileOutputStream(ruta);
+			ObjectOutputStream or = new ObjectOutputStream(fr);
+			for(Vehiculo vehiculo: vehiculos) {
+				or.writeObject(vehiculo);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<Vehiculo> leerFicheroVehiculo(String ruta){
+		ArrayList<Vehiculo> listaVehiculo = new ArrayList<Vehiculo>();
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(ruta));
+			String linea;
+			while((linea = br.readLine()) != null) {
+				String[] partes = linea.split("%");
+				int id = Integer.parseInt(partes[0]);
+				String matricula = partes[1];
+				int marcaModelo = Integer.parseInt(partes[2]);
+				LocalDate fecha = LocalDate.of(Integer.parseInt(partes[3].substring(0, 4)), Integer.parseInt(partes[3].substring(4, 6)),
+						Integer.parseInt(partes[3].substring(6, 8)));
+				float precio = Float.parseFloat(partes[4]);
+				listaVehiculo.add(new Vehiculo(id, matricula, marcaModelo, fecha, precio));
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return listaVehiculo;
+	}
+	
 	
 	//Ejercicio generarFichero de Estudiantes
 	
