@@ -37,13 +37,50 @@ public class Practicas {
 	
 	//620430873
 	
+	//Variante ejercicio anterior
+	
+	public void crearFicheroListaVehiculos(String ruta, ArrayList<Vehiculo> vehiculos) {
+		ObjectOutputStream or;
+		try {
+			FileOutputStream fr = new FileOutputStream(ruta);
+			or = new ObjectOutputStream(fr);
+			or.writeObject(vehiculos);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public ArrayList<Vehiculo> leerALVehiculosDesdeFichero(String ruta) {
+		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+		ObjectInputStream or;
+		try {
+			FileInputStream fr = new FileInputStream(ruta);
+			or = new ObjectInputStream(fr);
+			while(fr.available() > 0) {
+				vehiculos.addAll((ArrayList<Vehiculo>) or.readObject());
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return vehiculos;
+				
+	}
+	
 	//Ejercicio repaso ficherosObjetos
 	
 	public ArrayList<Vehiculo> leerArchivoObjetos(String ruta){
 		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+		ObjectInputStream or;
 		try {
 			FileInputStream fr = new FileInputStream(ruta);
-			ObjectInputStream or = new ObjectInputStream(fr);
+			or = new ObjectInputStream(fr);
 			while(fr.available() > 0) {
 				listaVehiculos.add((Vehiculo) or.readObject());
 			}
@@ -60,9 +97,10 @@ public class Practicas {
 	}
 	
 	public void crearArchivoObjetos(ArrayList<Vehiculo> vehiculos, String ruta) {
+		ObjectOutputStream or;
 		try {
 			FileOutputStream fr = new FileOutputStream(ruta);
-			ObjectOutputStream or = new ObjectOutputStream(fr);
+			or = new ObjectOutputStream(fr);
 			for(Vehiculo vehiculo: vehiculos) {
 				or.writeObject(vehiculo);
 			}

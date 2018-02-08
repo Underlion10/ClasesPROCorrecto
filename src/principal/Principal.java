@@ -247,6 +247,8 @@ public class Principal {
 		ArrayList<Vehiculo> vehiculos = practicas.leerFicheroVehiculo("src/ficheros/vehiculos.txt");
 		practicas.crearArchivoObjetos(vehiculos, "src/ficheros/Objetosvehiculos.obj");
 		ArrayList<Vehiculo> listaLectura = practicas.leerArchivoObjetos("src/ficheros/Objetosvehiculos.obj");
+		practicas.crearFicheroListaVehiculos("src/ficheros/ALVehiculos.obj", vehiculos);
+		ArrayList<Vehiculo> vehiculosAL = practicas.leerALVehiculosDesdeFichero("src/ficheros/ALVehiculos.obj");
 		System.out.println("fin");
 	}
 
