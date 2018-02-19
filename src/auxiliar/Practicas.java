@@ -2,6 +2,7 @@ package auxiliar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -34,11 +35,70 @@ public class Practicas {
 	// 2DA EVALUACION//
 
 	// MAPA
-	
-	//620430873
-	
-	//Variante ejercicio anterior
-	
+
+	// 620430873
+
+	// Variante ejercicio anterior
+	public HashMap<String, Float> mediaVisitantesMes(HashMap<String, ArrayList<Float>> visitantesMesIsla) {
+		HashMap<String, Float> visitantesMedia = new HashMap<String, Float>();
+		Set<String> isla = visitantesMesIsla.keySet();
+		String islaAct = "";
+
+		return visitantesMedia;
+	}
+
+	private String assignMonth(int island, String[] islands) {
+		return islands[island];
+	}
+
+	public HashMap<String, ArrayList<Float>> guardarFicheroHashMap(String ruta) {
+		HashMap<String, ArrayList<Float>> visitantesIsla = new HashMap<String, ArrayList<Float>>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(ruta));
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] splitLine = line.split("%");
+				int island = Integer.parseInt(splitLine[0]);
+				String[] islas = { "GC", "LTE", "FTV", "TFE", "LPA", "GOM", "HIE" };
+				String isl = assignMonth(island, islas);
+				int month = Integer.parseInt(splitLine[1]);
+				float visitors = Float.parseFloat(splitLine[2]);
+				if (visitantesIsla.containsKey(isl)) {
+					visitantesIsla.get(isl).set(month, visitors);
+				} else {
+					visitantesIsla.put(isl, new ArrayList<Float>());
+					for (int i = 0; i < 12; i++) {
+						visitantesIsla.get(isl).add(0f);
+					}
+					visitantesIsla.get(isl).set(month, visitors);
+				}
+			}
+			br.close();
+		} catch (IOException e) {
+
+		}
+		return visitantesIsla;
+	}
+
+	public float calculaSaldoList(float saldoInicial, String movimientos) {
+		float saldoFinal = saldoInicial;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(movimientos));
+			String linea;
+			while ((linea = br.readLine()) != null) {
+				String[] movs = linea.split("%");
+				float cantAct = Float.parseFloat(movs[1]);
+				saldoFinal += cantAct;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return saldoFinal;
+
+	}
+
 	public void crearFicheroListaVehiculos(String ruta, ArrayList<Vehiculo> vehiculos) {
 		ObjectOutputStream or;
 		try {
@@ -50,16 +110,16 @@ public class Practicas {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public ArrayList<Vehiculo> leerALVehiculosDesdeFichero(String ruta) {
 		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 		ObjectInputStream or;
 		try {
 			FileInputStream fr = new FileInputStream(ruta);
 			or = new ObjectInputStream(fr);
-			while(fr.available() > 0) {
+			while (fr.available() > 0) {
 				vehiculos.addAll((ArrayList<Vehiculo>) or.readObject());
 			}
 		} catch (FileNotFoundException e) {
@@ -70,18 +130,18 @@ public class Practicas {
 			e.printStackTrace();
 		}
 		return vehiculos;
-				
+
 	}
-	
-	//Ejercicio repaso ficherosObjetos
-	
-	public ArrayList<Vehiculo> leerArchivoObjetos(String ruta){
+
+	// Ejercicio repaso ficherosObjetos
+
+	public ArrayList<Vehiculo> leerArchivoObjetos(String ruta) {
 		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
 		ObjectInputStream or;
 		try {
 			FileInputStream fr = new FileInputStream(ruta);
 			or = new ObjectInputStream(fr);
-			while(fr.available() > 0) {
+			while (fr.available() > 0) {
 				listaVehiculos.add((Vehiculo) or.readObject());
 			}
 		} catch (FileNotFoundException e) {
@@ -91,17 +151,17 @@ public class Practicas {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return listaVehiculos;
-		
+
 	}
-	
+
 	public void crearArchivoObjetos(ArrayList<Vehiculo> vehiculos, String ruta) {
 		ObjectOutputStream or;
 		try {
 			FileOutputStream fr = new FileOutputStream(ruta);
 			or = new ObjectOutputStream(fr);
-			for(Vehiculo vehiculo: vehiculos) {
+			for (Vehiculo vehiculo : vehiculos) {
 				or.writeObject(vehiculo);
 			}
 		} catch (FileNotFoundException e) {
@@ -110,20 +170,20 @@ public class Practicas {
 			e.printStackTrace();
 		}
 	}
-	
-	public ArrayList<Vehiculo> leerFicheroVehiculo(String ruta){
+
+	public ArrayList<Vehiculo> leerFicheroVehiculo(String ruta) {
 		ArrayList<Vehiculo> listaVehiculo = new ArrayList<Vehiculo>();
-		
+
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(ruta));
 			String linea;
-			while((linea = br.readLine()) != null) {
+			while ((linea = br.readLine()) != null) {
 				String[] partes = linea.split("%");
 				int id = Integer.parseInt(partes[0]);
 				String matricula = partes[1];
 				int marcaModelo = Integer.parseInt(partes[2]);
-				LocalDate fecha = LocalDate.of(Integer.parseInt(partes[3].substring(0, 4)), Integer.parseInt(partes[3].substring(4, 6)),
-						Integer.parseInt(partes[3].substring(6, 8)));
+				LocalDate fecha = LocalDate.of(Integer.parseInt(partes[3].substring(0, 4)),
+						Integer.parseInt(partes[3].substring(4, 6)), Integer.parseInt(partes[3].substring(6, 8)));
 				float precio = Float.parseFloat(partes[4]);
 				listaVehiculo.add(new Vehiculo(id, matricula, marcaModelo, fecha, precio));
 			}
@@ -132,30 +192,30 @@ public class Practicas {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return listaVehiculo;
 	}
-	
-	//Fin ejercicioFicheroObjetos
-	
-	
-	//Ejercicio generarFichero de Estudiantes
-	
-	
+
+	// Fin ejercicioFicheroObjetos
+
+	// Ejercicio generarFichero de Estudiantes
+
 	public ArrayList<Estudiante> escribirObjetoFichero(ArrayList<Estudiante> es, String ruta) {
-		
+
 		boolean correcto = true;
-		
-		//abrimos y creamos el fichero de objetos
+
+		// abrimos y creamos el fichero de objetos
 		try {
 			FileOutputStream br = new FileOutputStream(ruta);
 			ObjectOutputStream os = new ObjectOutputStream(br);
-			for(Estudiante est: es) {
+			for (Estudiante est : es) {
 				os.writeObject(est);
 			}
-			
-			/*tambien se podría haber leído la lista mediante un os.writeObject(es),
-			metiendo toda la lista de una sola vez*/
+
+			/*
+			 * tambien se podría haber leído la lista mediante un os.writeObject(es),
+			 * metiendo toda la lista de una sola vez
+			 */
 			os.close();
 			br.close();
 		} catch (FileNotFoundException e) {
@@ -163,14 +223,14 @@ public class Practicas {
 		} catch (IOException e) {
 			correcto = false;
 		}
-		
+
 		ArrayList<Estudiante> estDev = new ArrayList<Estudiante>();
-		
+
 		// leemos el fichero de objetos que hemos creado anteriormente.
 		try {
 			FileInputStream fr = new FileInputStream(ruta);
 			ObjectInputStream os = new ObjectInputStream(fr);
-			while(fr.available() > 0) {
+			while (fr.available() > 0) {
 				Estudiante est = (Estudiante) os.readObject();
 				estDev.add(est);
 				System.out.println(est.getNombre());
@@ -186,27 +246,27 @@ public class Practicas {
 		}
 		return estDev;
 	}
-	
-	//Fin ejercicio ficheros de Estudiantes
-	
+
+	// Fin ejercicio ficheros de Estudiantes
+
 	public boolean generarArchivoLanzamiento(int cuantos, String ruta) {
 		long time = System.nanoTime();
 		boolean correcto = true;
 		Random rnd = new Random();
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(ruta));
-			HashMap<Integer,Integer> lanzamientoResultado = new HashMap<Integer, Integer>();
+			HashMap<Integer, Integer> lanzamientoResultado = new HashMap<Integer, Integer>();
 			int contador1 = 0;
 			int contador2 = 0;
 			int contador3 = 0;
 			int contador4 = 0;
 			int contador5 = 0;
 			int contador6 = 0;
-			for(int i = 0; i < cuantos; i++) {
-				int lanzamiento = i+1;
+			for (int i = 0; i < cuantos; i++) {
+				int lanzamiento = i + 1;
 				int resultado = rnd.nextInt(6) + 1;
 				lanzamientoResultado.put(lanzamiento, resultado);
-				switch(resultado) {
+				switch (resultado) {
 				case 1:
 					contador1++;
 					break;
@@ -226,12 +286,12 @@ public class Practicas {
 					contador6++;
 					break;
 				}
-				
+
 				try {
 					Thread.sleep(rnd.nextInt(500) + 500);
 					time += System.nanoTime();
-					float acttime = (time/100000000);
-					br.write(acttime/10000000 + " segundos de ejecución. ");
+					float acttime = (time / 100000000);
+					br.write(acttime / 10000000 + " segundos de ejecución. ");
 				} catch (InterruptedException e) {
 					return false;
 				}
@@ -252,16 +312,16 @@ public class Practicas {
 		}
 		return correcto;
 	}
-	
-	//Fin ejercicioGenerarFichero
-	
-	//Calcular Ed
-	//Ordenacion HashMap y ArrayList
-	
+
+	// Fin ejercicioGenerarFichero
+
+	// Calcular Ed
+	// Ordenacion HashMap y ArrayList
+
 	public void ordenarPersonas(ArrayList<Persona> personas) {
-		for(int i = 0; i<personas.size()-1;i++) {
-			for(int j = i+1; j<personas.size(); j++) {
-				if(personas.get(i).compareTo(personas.get(j)) > 0) {
+		for (int i = 0; i < personas.size() - 1; i++) {
+			for (int j = i + 1; j < personas.size(); j++) {
+				if (personas.get(i).compareTo(personas.get(j)) > 0) {
 					Persona aux = personas.get(j);
 					personas.set(j, personas.get(i));
 					personas.set(i, aux);
@@ -269,7 +329,7 @@ public class Practicas {
 			}
 		}
 	}
-	
+
 	public HashMap<Integer, Integer> ordenarHashMapValue() {
 		HashMap<Integer, Integer> mapa = new HashMap<Integer, Integer>();
 		mapa.put(30, 10);
@@ -280,34 +340,35 @@ public class Practicas {
 		Set<Integer> claves = mapa.keySet();
 		return mapa;
 	}
-	
+
 	public void ordenarHashMapKey(HashMap<Integer, Integer> mapa) {
 		TreeMap<Integer, Integer> mapaOrdenado = new TreeMap<Integer, Integer>(mapa);
 		SortedMap<Integer, Integer> mapaSorted = new TreeMap<Integer, Integer>(mapa);
 		System.out.println(mapaSorted);
 	}
-	
+
 	public void ordenarArrayList(ArrayList<Integer> lista) {
 		Collections.sort(lista);
 	}
-	
+
 	public int calcularEdad(String fechaNacimiento) {
 		DateTimeFormatter fat = DateTimeFormatter.ofPattern("ddMMyyyy");
 		LocalDate fechaNac = LocalDate.parse(fechaNacimiento, fat);
 		LocalDate now = LocalDate.now();
 		Period period = Period.between(fechaNac, now);
-		
-		System.out.println(period.getYears() + " años, " + period.getMonths() + " meses, " + period.getDays() + " días.");
+
+		System.out
+				.println(period.getYears() + " años, " + period.getMonths() + " meses, " + period.getDays() + " días.");
 		return period.getYears();
 	}
-	
+
 	public HashMap<String, Estudiante> leerFichero() {
 		ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
 		HashMap<String, Estudiante> mapaEstudiantes = new HashMap<String, Estudiante>();
 		int year = 0;
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("src/ficheros/persona.txt"));
-			while(in.ready()) {
+			while (in.ready()) {
 				String linea = in.readLine();
 				String[] partes = linea.split("-");
 				int codGrupo = Integer.parseInt(partes[0]);
@@ -316,53 +377,56 @@ public class Practicas {
 				String fechaNacimiento = partes[3];
 				year += calcularEdad(fechaNacimiento);
 				String sexo = partes[4];
-				Estudiante est1 = new Estudiante(codGrupo, nif, nombre, sexo.charAt(0), LocalDate.of(Integer.parseInt(fechaNacimiento.substring(4,8)), 
-						Integer.parseInt(fechaNacimiento.substring(2,4)), Integer.parseInt(fechaNacimiento.substring(0,2))), 180, null, null);
+				Estudiante est1 = new Estudiante(codGrupo, nif, nombre, sexo.charAt(0),
+						LocalDate.of(Integer.parseInt(fechaNacimiento.substring(4, 8)),
+								Integer.parseInt(fechaNacimiento.substring(2, 4)),
+								Integer.parseInt(fechaNacimiento.substring(0, 2))),
+						180, null, null);
 				estudiantes.add(est1);
 				mapaEstudiantes.put(est1.getNombre(), est1);
 			}
-			in.close();		
+			in.close();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		year = (int) year/estudiantes.size();
+
+		year = (int) year / estudiantes.size();
 		System.out.println(year);
 		return mapaEstudiantes;
 	}
-	
-	public ArrayList<ArrayList<String>> probarMatrizAL(String[][] nombres){
+
+	public ArrayList<ArrayList<String>> probarMatrizAL(String[][] nombres) {
 		ArrayList<ArrayList<String>> nombresAL = new ArrayList<ArrayList<String>>();
-		
-		for(String[] nombreC: nombres) {
+
+		for (String[] nombreC : nombres) {
 			ArrayList<String> names = new ArrayList<String>();
-			for(String nombre: nombreC) {
+			for (String nombre : nombreC) {
 				names.add(nombre);
 			}
-			
+
 			nombresAL.add(names);
 		}
-		
+
 		return nombresAL;
 	}
-	
-	public HashMap<String,Persona> realizarList(ArrayList<String> nombres){
-		HashMap<String,Persona> personasX = new HashMap<String,Persona>();
+
+	public HashMap<String, Persona> realizarList(ArrayList<String> nombres) {
+		HashMap<String, Persona> personasX = new HashMap<String, Persona>();
 		ArrayList<Persona> personas = new ArrayList<Persona>();
-		
-		for(String nombre: nombres) {
-			Persona persona = new Estudiante(23,"345690N",nombre,'M',null,178,null,null);
+
+		for (String nombre : nombres) {
+			Persona persona = new Estudiante(23, "345690N", nombre, 'M', null, 178, null, null);
 			personas.add(persona);
 		}
-		
-		for(Iterator<Persona> iterador = personas.iterator(); iterador.hasNext();) {
+
+		for (Iterator<Persona> iterador = personas.iterator(); iterador.hasNext();) {
 			Persona personaAct = iterador.next();
 			personasX.put(personaAct.getNombre(), personaAct);
 		}
-		
+
 		return personasX;
 	}
-	
+
 	public ArrayList<String> realizarIterator(ArrayList<Persona> personas) {
 		ArrayList<String> nombres = new ArrayList<String>();
 		for (Iterator<Persona> iterator = personas.iterator(); iterator.hasNext();) {
@@ -370,13 +434,13 @@ public class Practicas {
 		}
 		return nombres;
 	}
-	
-	public HashMap<Integer, Persona> crearMapaValores(ArrayList<Persona> personas){
-		HashMap<Integer,Persona> mapaPersonas = new HashMap<Integer, Persona>();
-		for(Persona persona: personas) {
+
+	public HashMap<Integer, Persona> crearMapaValores(ArrayList<Persona> personas) {
+		HashMap<Integer, Persona> mapaPersonas = new HashMap<Integer, Persona>();
+		for (Persona persona : personas) {
 			mapaPersonas.put(persona.getAltura(), persona);
 		}
-		
+
 		return mapaPersonas;
 		//
 	}
@@ -389,10 +453,10 @@ public class Practicas {
 		resultado.put(est1.getNif(), est1);
 		resultado.put(est2.getNif(), est2);
 		resultado.put("123456789N", new Estudiante(2, "123456789N", "Pipi", 'M', null, 180, null, null));
-		
+
 		Set<String> claves = resultado.keySet();
-		
-		for(String clave: claves) {
+
+		for (String clave : claves) {
 			System.out.println(resultado.get(clave).getNombre());
 		}
 		return resultado;
@@ -992,8 +1056,8 @@ public class Practicas {
 			if (cadena.charAt(i) >= 'A' && cadena.charAt(i) <= 'Z')
 				contadorMayusculas++;
 			int caracterAscii = cadena.charAt(i);
-			if ((caracterAscii >= 0 && caracterAscii <= 47) || (caracterAscii >= 58 && caracterAscii <= 64) ||
-					(caracterAscii >= 91) && (caracterAscii <= 96))
+			if ((caracterAscii >= 0 && caracterAscii <= 47) || (caracterAscii >= 58 && caracterAscii <= 64)
+					|| (caracterAscii >= 91) && (caracterAscii <= 96))
 
 				contadorEspeciales++;
 		}

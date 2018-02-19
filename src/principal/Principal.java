@@ -249,6 +249,12 @@ public class Principal {
 		ArrayList<Vehiculo> listaLectura = practicas.leerArchivoObjetos("src/ficheros/Objetosvehiculos.obj");
 		practicas.crearFicheroListaVehiculos("src/ficheros/ALVehiculos.obj", vehiculos);
 		ArrayList<Vehiculo> vehiculosAL = practicas.leerALVehiculosDesdeFichero("src/ficheros/ALVehiculos.obj");
+		float saldoFinal = practicas.calculaSaldoList(125.3f, "src/ficheros/movimientos.txt");
+		System.out.println(saldoFinal);
+		// Prueba escribirIslaYear
+		HashMap<String, ArrayList<Float>> visitantesIsla = practicas.guardarFicheroHashMap("src/ficheros/visitantes.txt");
+		//Fin prueba
+		HashMap<String, Float> visitantesMedia = practicas.mediaVisitantesMes(visitantesIsla);
 		System.out.println("fin");
 	}
 
