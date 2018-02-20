@@ -34,20 +34,55 @@ public class Practicas {
 
 	// 2DA EVALUACION//
 
-	// MAPA
+	// MAPAS
 
-	// 620430873
+	public HashMap<String, ArrayList<Float>> visitantesMesIsla(String ruta) {
+		HashMap<String, ArrayList<Float>> visitantesMes = new HashMap<String, ArrayList<Float>>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(ruta));
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] splitLine = line.split("%");
+				int island = Integer.parseInt(splitLine[0]);
+				int month = Integer.parseInt(splitLine[1]);
+				String[] meses = { "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC" };
+				String literalMonth = assignIsland(month, meses);
+				float visitors = Float.parseFloat(splitLine[2]);
+				if (visitantesMes.containsKey(literalMonth)) {
+					visitantesMes.get(literalMonth).set(island, visitors);
+				} else {
+					visitantesMes.put(literalMonth, new ArrayList<Float>());
+					for (int i = 0; i < 7; i++) {
+						visitantesMes.get(literalMonth).add(0f);
+					}
+					visitantesMes.get(literalMonth).set(island, visitors);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.getMessage();
+		} catch (IOException e) {
+			e.getMessage();
+		}
+		return visitantesMes;
+	}
 
-	// Variante ejercicio anterior
 	public HashMap<String, Float> mediaVisitantesMes(HashMap<String, ArrayList<Float>> visitantesMesIsla) {
 		HashMap<String, Float> visitantesMedia = new HashMap<String, Float>();
-		Set<String> isla = visitantesMesIsla.keySet();
-		String islaAct = "";
+		Set<String> claves = visitantesMesIsla.keySet();
+		for (Iterator<String> iterator = claves.iterator(); iterator.hasNext();) {
+			String temp = iterator.next();
+			ArrayList<Float> visitors = visitantesMesIsla.get(temp);
+			float totalResult = 0;
+			for (int j = 0; j < visitors.size(); j++) {
+				totalResult += visitors.get(j);
+			}
+			visitantesMedia.put(temp, totalResult / 12);
+		}
 
 		return visitantesMedia;
 	}
 
-	private String assignMonth(int island, String[] islands) {
+	private String assignIsland(int island, String[] islands) {
 		return islands[island];
 	}
 
@@ -60,7 +95,7 @@ public class Practicas {
 				String[] splitLine = line.split("%");
 				int island = Integer.parseInt(splitLine[0]);
 				String[] islas = { "GC", "LTE", "FTV", "TFE", "LPA", "GOM", "HIE" };
-				String isl = assignMonth(island, islas);
+				String isl = assignIsland(island, islas);
 				int month = Integer.parseInt(splitLine[1]);
 				float visitors = Float.parseFloat(splitLine[2]);
 				if (visitantesIsla.containsKey(isl)) {
@@ -79,6 +114,8 @@ public class Practicas {
 		}
 		return visitantesIsla;
 	}
+
+	// Variante ejercicio anterior
 
 	public float calculaSaldoList(float saldoInicial, String movimientos) {
 		float saldoFinal = saldoInicial;

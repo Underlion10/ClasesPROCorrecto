@@ -255,6 +255,7 @@ public class Principal {
 		HashMap<String, ArrayList<Float>> visitantesIsla = practicas.guardarFicheroHashMap("src/ficheros/visitantes.txt");
 		//Fin prueba
 		HashMap<String, Float> visitantesMedia = practicas.mediaVisitantesMes(visitantesIsla);
+		HashMap<String, ArrayList<Float>> visitantesMes = practicas.visitantesMesIsla("src/ficheros/visitantes.txt");
 		System.out.println("fin");
 	}
 
