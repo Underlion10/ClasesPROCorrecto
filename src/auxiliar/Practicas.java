@@ -36,8 +36,8 @@ public class Practicas {
 
 	// MAPAS
 
-	public HashMap<String, ArrayList<Float>> visitantesMesIsla(String ruta) {
-		HashMap<String, ArrayList<Float>> visitantesMes = new HashMap<String, ArrayList<Float>>();
+	public TreeMap<String, ArrayList<Float>> visitantesMesIsla(String ruta) {
+		TreeMap<String, ArrayList<Float>> visitantesMes = new TreeMap<String, ArrayList<Float>>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(ruta));
 			String line;
@@ -73,12 +73,10 @@ public class Practicas {
 			String temp = iterator.next();
 			ArrayList<Float> visitors = visitantesMesIsla.get(temp);
 			float totalResult = 0;
-			for (int j = 0; j < visitors.size(); j++) {
+			for (int j = 0; j < visitors.size(); j++)
 				totalResult += visitors.get(j);
-			}
 			visitantesMedia.put(temp, totalResult / 12);
 		}
-
 		return visitantesMedia;
 	}
 

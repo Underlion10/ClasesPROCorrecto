@@ -3,6 +3,7 @@ package principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import auxiliar.Practicas;
 import examen1EV.Metodos;
@@ -255,7 +256,7 @@ public class Principal {
 		HashMap<String, ArrayList<Float>> visitantesIsla = practicas.guardarFicheroHashMap("src/ficheros/visitantes.txt");
 		//Fin prueba
 		HashMap<String, Float> visitantesMedia = practicas.mediaVisitantesMes(visitantesIsla);
-		HashMap<String, ArrayList<Float>> visitantesMes = practicas.visitantesMesIsla("src/ficheros/visitantes.txt");
+		TreeMap<String, ArrayList<Float>> visitantesMes = practicas.visitantesMesIsla("src/ficheros/visitantes.txt");
 		System.out.println("fin");
 	}
 
