@@ -35,6 +35,17 @@ public class Practicas {
 	// 2DA EVALUACION//
 
 	// MAPAS
+	
+	public void imprimirVisitantesIslaMesOrdenado(HashMap<String, ArrayList<Float>> mapa) {
+		String[] meses = { "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC" };
+		String[] islas = { "GC", "LTE", "FTV", "TFE", "LPA", "GOM", "HIE" };
+		for(int i = 0; i < islas.length; i++) {
+			ArrayList<Float> mesesVisitantes = mapa.get(islas[i]);
+			for(int j = 0; j < meses.length; j++) {
+				System.out.println(islas[i] + " - " + meses[j] + " - " + mesesVisitantes.get(j));
+			}
+		}
+	}
 
 	public TreeMap<String, ArrayList<Float>> visitantesMesIsla(String ruta) {
 		TreeMap<String, ArrayList<Float>> visitantesMes = new TreeMap<String, ArrayList<Float>>();

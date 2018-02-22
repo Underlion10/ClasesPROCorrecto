@@ -257,6 +257,7 @@ public class Principal {
 		//Fin prueba
 		HashMap<String, Float> visitantesMedia = practicas.mediaVisitantesMes(visitantesIsla);
 		TreeMap<String, ArrayList<Float>> visitantesMes = practicas.visitantesMesIsla("src/ficheros/visitantes.txt");
+		practicas.imprimirVisitantesIslaMesOrdenado(visitantesIsla);
 		System.out.println("fin");
 	}
 
