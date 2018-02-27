@@ -36,15 +36,94 @@ public class Practicas {
 
 	// MAPAS
 	
+	//Fichero objetos
+	
+	public void obtenerFicheroVehiculo(String rutaDes, String rutaOR) {
+		ObjectInputStream os;
+		BufferedWriter br;
+		try {
+			br = new BufferedWriter(new FileWriter(rutaDes));
+			FileInputStream fr = new FileInputStream(rutaOR);
+			os = new ObjectInputStream(fr);
+			while(fr.available() > 0) {
+				Vehiculo veh = (Vehiculo) os.readObject();
+				br.write(veh.getId() + "%" + veh.getMarcaModelo() + "%" + veh.getMatricula() + "%"  
+				+ veh.getFechaMatricula() +  "%" + veh.getPrecio());
+				br.newLine();
+			}
+			br.close();
+			os.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private Vehiculo crearVehiculo(String[] lineas) {
+		int id = Integer.parseInt(lineas[0]);
+		String matricula = lineas[1];
+		int marcaModelo = Integer.parseInt(lineas[2]);
+		LocalDate fecha = LocalDate.of(Integer.parseInt(lineas[3].substring(0, 4)),
+					Integer.parseInt(lineas[3].substring(4, 6)),
+				Integer.parseInt(lineas[3].substring(6, 8)));
+		float precio = Float.parseFloat(lineas[4]);
+		
+		return new Vehiculo(id, matricula, marcaModelo, fecha, precio);
+	}
+	
+	public void copiarFicheroObjetoDesdeFicheroTexto(String rutaObj, String rutaDes) {
+		ObjectOutputStream or;
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(rutaDes));
+			FileOutputStream fr = new FileOutputStream(rutaObj);
+			or = new ObjectOutputStream(fr);
+			String line;
+			while ((line = br.readLine()) != null) {
+				Vehiculo veh = crearVehiculo(line.split("%"));
+				or.writeObject(veh);
+			}
+			br.close();
+			or.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public void imprimirVisitantesIslaMesOrdenado(HashMap<String, ArrayList<Float>> mapa) {
 		String[] meses = { "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC" };
 		String[] islas = { "GC", "LTE", "FTV", "TFE", "LPA", "GOM", "HIE" };
+		System.out.print("\t");
+		for(int i = 0; i < meses.length; i++) {
+			System.out.print(meses[i] + "\t");
+		}
+		System.out.print("TOTAL ISLA\n");
+		float[] mesesIsla = new float[13];
 		for(int i = 0; i < islas.length; i++) {
 			ArrayList<Float> mesesVisitantes = mapa.get(islas[i]);
-			for(int j = 0; j < meses.length; j++) {
-				System.out.println(islas[i] + " - " + meses[j] + " - " + mesesVisitantes.get(j));
+			System.out.print(islas[i] + "\t");
+			float total = 0f;
+			int j = 0;
+			for(Float cantidad: mesesVisitantes) {
+				System.out.printf("%.0f\t", cantidad*1000);
+				mesesIsla[j] += cantidad*1000;
+				total += cantidad*1000;
+				j++;
 			}
+			System.out.printf("%.0f\n",total);
+			mesesIsla[12] += total*1000;
 		}
+		System.out.print("TOT\t");
+		for(int i = 0; i < mesesIsla.length; i++) {
+			System.out.printf("%.0f\t",mesesIsla[i]);
+		}
+		System.out.println();
 	}
 
 	public TreeMap<String, ArrayList<Float>> visitantesMesIsla(String ruta) {
@@ -201,7 +280,8 @@ public class Practicas {
 		return listaVehiculos;
 
 	}
-
+	
+	
 	public void crearArchivoObjetos(ArrayList<Vehiculo> vehiculos, String ruta) {
 		ObjectOutputStream or;
 		try {

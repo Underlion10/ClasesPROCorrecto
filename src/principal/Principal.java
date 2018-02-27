@@ -258,6 +258,10 @@ public class Principal {
 		HashMap<String, Float> visitantesMedia = practicas.mediaVisitantesMes(visitantesIsla);
 		TreeMap<String, ArrayList<Float>> visitantesMes = practicas.visitantesMesIsla("src/ficheros/visitantes.txt");
 		practicas.imprimirVisitantesIslaMesOrdenado(visitantesIsla);
+		
+		// Escritura fichero objetos
+		practicas.copiarFicheroObjetoDesdeFicheroTexto("src/ficheros/FicheroVehiculos.txt", "src/ficheros/vehiculos.txt");
+		practicas.obtenerFicheroVehiculo("src/ficheros/VehiculosDesdeFichero.txt", "src/ficheros/FicheroVehiculos.txt");
 		System.out.println("fin");
 	}
 
