@@ -48,7 +48,7 @@ public class Practicas {
 			while(fr.available() > 0) {
 				Vehiculo veh = (Vehiculo) os.readObject();
 				br.write(veh.getId() + "%" + veh.getMarcaModelo() + "%" + veh.getMatricula() + "%"  
-				+ veh.getFechaMatricula() +  "%" + veh.getPrecio());
+				+ veh.getFechaMatricula().toString() +  "%" + veh.getPrecio());
 				br.newLine();
 			}
 			br.close();
@@ -66,12 +66,11 @@ public class Practicas {
 		int id = Integer.parseInt(lineas[0]);
 		String matricula = lineas[1];
 		int marcaModelo = Integer.parseInt(lineas[2]);
-		LocalDate fecha = LocalDate.of(Integer.parseInt(lineas[3].substring(0, 4)),
-					Integer.parseInt(lineas[3].substring(4, 6)),
-				Integer.parseInt(lineas[3].substring(6, 8)));
+		DateTimeFormatter fat = DateTimeFormatter.ofPattern("yyyyMMdd");
+		LocalDate fechaNac = LocalDate.parse(lineas[3], fat);		
 		float precio = Float.parseFloat(lineas[4]);
 		
-		return new Vehiculo(id, matricula, marcaModelo, fecha, precio);
+		return new Vehiculo(id, matricula, marcaModelo, fechaNac, precio);
 	}
 	
 	public void copiarFicheroObjetoDesdeFicheroTexto(String rutaObj, String rutaDes) {
