@@ -52,6 +52,7 @@ public class Practicas {
 					"" + veh.getFechaMatricula().getDayOfMonth()) + "%" + veh.getPrecio());
 				br.newLine();
 			}
+			fr.close();
 			br.close();
 			os.close();
 		} catch (FileNotFoundException e) {
@@ -93,7 +94,6 @@ public class Practicas {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	public void imprimirVisitantesIslaMesOrdenado(HashMap<String, ArrayList<Float>> mapa) {
