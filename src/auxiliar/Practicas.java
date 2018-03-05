@@ -48,7 +48,8 @@ public class Practicas {
 			while(fr.available() > 0) {
 				Vehiculo veh = (Vehiculo) os.readObject();
 				br.write(veh.getId() + "%" + veh.getMarcaModelo() + "%" + veh.getMatricula() + "%"  
-				+ veh.getFechaMatricula().toString() +  "%" + veh.getPrecio());
+				+ (veh.getFechaMatricula().getYear() + ""  + veh.getFechaMatricula().getMonthValue() + 
+					"" + veh.getFechaMatricula().getDayOfMonth()) + "%" + veh.getPrecio());
 				br.newLine();
 			}
 			br.close();

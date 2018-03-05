@@ -260,8 +260,10 @@ public class Principal {
 		practicas.imprimirVisitantesIslaMesOrdenado(visitantesIsla);
 		
 		// Escritura fichero objetos
-		practicas.copiarFicheroObjetoDesdeFicheroTexto("src/ficheros/FicheroVehiculos.txt", "src/ficheros/vehiculos.txt");
-		practicas.obtenerFicheroVehiculo("src/ficheros/VehiculosDesdeFichero.txt", "src/ficheros/FicheroVehiculos.txt");
+		practicas.copiarFicheroObjetoDesdeFicheroTexto("src/ficheros/FicheroVehiculos.txt",
+				"src/ficheros/vehiculos.txt");
+		practicas.obtenerFicheroVehiculo("src/ficheros/VehiculosDesdeFichero.txt",
+				"src/ficheros/FicheroVehiculos.txt");
 		System.out.println("fin");
 	}
 
