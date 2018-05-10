@@ -2,7 +2,6 @@ package auxiliar;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -299,7 +298,6 @@ public class Practicas {
 
 	public ArrayList<Vehiculo> leerFicheroVehiculo(String ruta) {
 		ArrayList<Vehiculo> listaVehiculo = new ArrayList<Vehiculo>();
-
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(ruta));
 			String linea;
