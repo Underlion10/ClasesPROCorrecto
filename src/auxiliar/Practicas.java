@@ -220,7 +220,6 @@ public class Practicas {
 			e.printStackTrace();
 		}
 		return saldoFinal;
-
 	}
 
 	public void crearFicheroListaVehiculos(String ruta, ArrayList<Vehiculo> vehiculos) {
@@ -237,6 +236,7 @@ public class Practicas {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Vehiculo> leerALVehiculosDesdeFichero(String ruta) {
 		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 		ObjectInputStream or;
@@ -254,7 +254,6 @@ public class Practicas {
 			e.printStackTrace();
 		}
 		return vehiculos;
-
 	}
 
 	// Ejercicio repaso ficherosObjetos
@@ -275,9 +274,7 @@ public class Practicas {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
 		return listaVehiculos;
-
 	}
 	
 	
